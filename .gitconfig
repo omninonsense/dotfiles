@@ -1,0 +1,19 @@
+[user]
+	email = nino@miletich.me
+	name = Nino Miletich
+
+[push]
+	default = simple
+
+[diff]
+  color = always
+
+[branch]
+  color = always
+
+[core]
+  filemode     = false
+  ignorecase   = false
+
+[github]
+  user = omninonsense
