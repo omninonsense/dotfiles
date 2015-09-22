@@ -32,3 +32,9 @@ source /usr/local/share/chruby/auto.fish
 
 # Include secrets
 source ~/.config/fish/secrets/*.fish
+
+# Add $HOME/bin to $PATH
+set -gx PATH $HOME/bin $PATH
+
+# Use XTERM
+set -gx TERM xterm-256color
