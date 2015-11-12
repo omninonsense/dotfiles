@@ -47,3 +47,4 @@ set -gx VISUAL $EDITOR
 if [ "$TERM" != "screen-256color" ]
   set -gx TERM xterm-256color
 end
+
