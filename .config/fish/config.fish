@@ -27,8 +27,23 @@ set -g fish_pager_color_description    black              # the color of the com
 set -g fish_color_search_match         --background=black # the color used to highlight history search matches
 
 # Enable Chruby
-source /usr/local/share/chruby/chruby.fish
-source /usr/local/share/chruby/auto.fish
+# source /usr/local/share/chruby/chruby.fish
+# source /usr/local/share/chruby/auto.fish
 
 # Include secrets
 source ~/.config/fish/secrets/*.fish
+
+# Add $HOME/bin to $PATH
+set -gx PATH $HOME/bin $PATH
+
+# Add Ruby to path
+set -gx PATH $HOME/.gem/ruby/2.2.0/bin $PATH
+
+# Set vim as editor
+set -gx EDITOR vim
+set -gx VISUAL $EDITOR
+
+# Set appropriate term
+if [ "$TERM" != "screen-256color" ]
+  set -gx TERM xterm-256color
+end
