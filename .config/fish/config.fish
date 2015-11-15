@@ -36,8 +36,15 @@ source ~/.config/fish/secrets/*.fish
 # Add $HOME/bin to $PATH
 set -gx PATH $HOME/bin $PATH
 
-# Add
+# Add Ruby to path
 set -gx PATH $HOME/.gem/ruby/2.2.0/bin $PATH
 
-# Use XTERM
-set -gx TERM xterm-256color
+# Set vim as editor
+set -gx EDITOR vim
+set -gx VISUAL $EDITOR
+
+# Set appropriate term
+if [ "$TERM" != "screen-256color" ]
+  set -gx TERM xterm-256color
+end
+
