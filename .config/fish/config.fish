@@ -37,7 +37,7 @@ source ~/.config/fish/secrets/*.fish
 set -gx PATH $HOME/bin $PATH
 
 # Add Ruby to path
-set -gx PATH $HOME/.gem/ruby/2.2.0/bin $PATH
+set -gx PATH $HOME/.gem/ruby/2.3.0/bin $PATH
 
 # Set vim as editor
 set -gx EDITOR vim
