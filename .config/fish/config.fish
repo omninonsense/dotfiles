@@ -13,10 +13,10 @@ set -g fish_color_redirection          purple             # the color for IO red
 set -g fish_color_end                  purple             # the color for process separators like ';' and '&'
 
 set -g fish_color_error                red --underline    # the color used to highlight potential errors
-set -g fish_color_comment              black              # the color used for code comments
+set -g fish_color_comment              555                # the color used for code comments
 
 set -g fish_color_match                normal             # the color used to highlight matching parenthesis
-set -g fish_color_autosuggestion       white              # the color used for suggestions
+set -g fish_color_autosuggestion       567                # the color used for suggestions
 
 set -g fish_color_operator             blue               # the color for parameter expansion operators like '*' and '~'
 set -g fish_color_cwd                  green              # the color used for the current working directory in the default prompt
@@ -36,8 +36,8 @@ source ~/.config/fish/secrets/*.fish
 # Add $HOME/bin to $PATH
 set -gx PATH $HOME/bin $PATH
 
-# Add Ruby to path
-set -gx PATH $HOME/.gem/ruby/2.3.0/bin $PATH
+# Add Ruby gems to path
+set -gx PATH $HOME/.gem/ruby/(ruby -r 'rbconfig' -e 'puts RbConfig::CONFIG["ruby_version"]')/bin $PATH
 
 # Set vim as editor
 set -gx EDITOR vim
