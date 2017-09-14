@@ -51,9 +51,13 @@ include "%L"
 <Multi_key> <g> <O> <h>          : "Ω" U03A9 # GREEK CAPITAL LETTER OMEGA
 <Multi_key> <g> <o> <h>          : "ω" U03C9 # GREEK SMALL LETTER OMEGA
 
-<Multi_key> <space> <minus>      : " — "     # EM DASH surrounded by THIN SPACEs
-<Multi_key> <exclam> <equal>		: "≠"	U2260		# NOT EQUAL TO
-<Multi_key> <slash> <equal>		: "≠"	U2260		# NOT EQUAL TO
-<Multi_key> <less> <equal>		: "≤"	U2264		# LESS-THAN OR EQUAL TO
-<Multi_key> <greater> <equal>		: "≥"	U2265		# GREATER-THAN OR EQUAL TO
-<Multi_key> <exclam> <less> <greater>   : "≸"	U2278		# NEITHER LESS-THAN NOR GREATER-THAN
+<Multi_key> <space> <minus>      : " — "                # EM DASH surrounded by THIN SPACEs
+<Multi_key> <exclam> <equal>     : "≠"  U2260           # NOT EQUAL TO
+<Multi_key> <slash> <equal>      : "≠"  U2260           # NOT EQUAL TO
+<Multi_key> <less> <equal>       : "≤"  U2264           # LESS-THAN OR EQUAL TO
+<Multi_key> <greater> <equal>    : "≥"  U2265           # GREATER-THAN OR EQUAL TO
+<Multi_key> <exclam> <less> <greater>   : "≸"  U2278    # NEITHER LESS-THAN NOR GREATER-THAN
+
+<Multi_key> <Multi_key> <s> <m> <m> :   "⚣"     U26A3   # DOUBLED MALE SIGN
+<Multi_key> <Multi_key> <s> <f> <f> :   "⚢"     U26A2   # DOUBLED FEMALE SIGN
+<Multi_key> <Multi_key> <s> <f> <m> :   "⚤"     U26A4   # INTERLOCKED FEMALE AND MALE SIGN
