@@ -4,7 +4,7 @@ help:
 all:
 	@make vim
 	@make tmux
-	@make git
+	@make xcompose
 	@make fish
 
 atom:
@@ -24,4 +24,7 @@ tmux:
 
 vim:
 	@ln -s ${PWD}/.vim ${HOME}/
-	@ln -s ${PWD}/.vimrc ${HOME}/.vimrc
+	@ln -s ${PWD}/.vimrc ${HOME}/
+
+xcompose:
+	@ln -s ${PWD}/.XCompose ${HOME}/
