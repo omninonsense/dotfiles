@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+require "clipboard"
+
+string = "fabulous"
+string = ARGV.join(' ') unless ARGV.empty?
+
+output = "\u{0f3a} #{string} \u{0f3b}"
+
+Clipboard.copy output
+puts output

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scrot -se 'mv $f ~/Screenshots; xclip -i -selection clipboard -t image/png ~/Screenshots/$f'

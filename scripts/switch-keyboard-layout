@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function get_index {
+    local value="$1"; shift
+    local __arr=("$@")
+
+    for i in "${!__arr[@]}"; do
+       if [[ "${__arr[$i]}" = "$value" ]]; then
+           echo "${i}"
+           return 0
+       fi
+    done
+
+    echo -1
+    return 1
+}
+
+LAYOUTS=(gb hr)
+LAYOUTS_LENGTH="${#LAYOUTS[@]}"
+
+# Get the current layout
+CURRENT_LAYOUT="$(setxkbmap -query | awk '/^layout/{ print $2 }')"
+
+# Get the index
+INDEX=$(get_index "$CURRENT_LAYOUT" "${LAYOUTS[@]}")
+
+if [[ $((INDEX+1)) -gt $((LAYOUTS_LENGTH-1)) ]]; then
+  NEXT_INDEX='0'
+else
+  NEXT_INDEX=$((INDEX+1))
+fi
+
+setxkbmap -layout "${LAYOUTS[$NEXT_INDEX]}"
+echo "Keyboard layout switched to ${LAYOUTS[$NEXT_INDEX]}"
