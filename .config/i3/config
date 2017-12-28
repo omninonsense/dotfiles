@@ -173,7 +173,7 @@ bindsym $mod+r mode "resize"
 # }
 
 bindsym Print exec "scrot -e 'mv $f ~/Screenshots'"
-bindsym $mod+Print exec "scrot -ue 'mv $f ~/Screenshots'"
+bindsym $mod+Print exec "scrot -se 'mv $f ~/Screenshots; xclip -i -selection clipboard -t image/png ~/Screenshots/$f'"
 
 bindsym Mod1+Control+l exec --no-startup-id bash ~/bin/lock
 
@@ -195,6 +195,7 @@ exec --no-startup-id killall notify-osd
 exec --no-startup-id dunst
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
+exec_always --no-startup-id setxkbmap -option compose:menu
 
 # assign [class="Atom"] $workspace2
 assign [class="Spotify"] $workspace4
