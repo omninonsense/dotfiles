@@ -190,7 +190,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id bash ~/.screenlayout/gambit.sh
 exec --no-startup-id compton -b
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id killall notify-osd
 exec --no-startup-id dunst
 exec --no-startup-id launch-polybar
