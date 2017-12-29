@@ -201,6 +201,9 @@ exec_always --no-startup-id setxkbmap -option compose:menu
 assign [class="Spotify"] $workspace4
 for_window [class="Spotify"] move to workspace $workspace4
 
+new_window pixel
+new_float normal
+
 # Gaps
 gaps inner 5
 bindsym $mod+KP_Add gaps inner all plus 1
