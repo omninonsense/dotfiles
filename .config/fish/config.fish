@@ -36,6 +36,11 @@ source ~/.config/fish/secrets/*.fish
 # Add $HOME/bin to $PATH
 set -gx PATH $HOME/bin $PATH
 
+# Add Hackage/Cabal to BIN
+if test -d $HOME/.cabal/bin
+  set -gx PATH $HOME/bin $PATH
+endi
+
 # Add Ruby gems to path
 set -gx PATH $HOME/.gem/ruby/(ruby -r 'rbconfig' -e 'puts RbConfig::CONFIG["ruby_version"]')/bin $PATH
 
