@@ -39,7 +39,7 @@ set -gx PATH $HOME/bin $PATH
 # Add Hackage/Cabal to BIN
 if test -d $HOME/.cabal/bin
   set -gx PATH $HOME/bin $PATH
-endi
+end
 
 # Add Ruby gems to path
 set -gx PATH $HOME/.gem/ruby/(ruby -r 'rbconfig' -e 'puts RbConfig::CONFIG["ruby_version"]')/bin $PATH
