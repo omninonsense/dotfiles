@@ -33,6 +33,11 @@ source /usr/local/share/chruby/auto.fish
 # Include secrets
 source ~/.config/fish/secrets/*.fish
 
+# Include some work-specific stuff
+if begin test -f ~/.work; and test -f ~/.config/fish/gambit.fish; end
+  source ~/.config/fish/gambit.fish
+end
+
 # Add $HOME/bin to $PATH
 set -gx PATH $HOME/bin $PATH
 
