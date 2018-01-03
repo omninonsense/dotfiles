@@ -1,0 +1,27 @@
+#!/bin/bash
+
+GOOGLIES_HISTORY="$HOME/.googlies_history"
+WHERE_IS_GOOGLIE="https://google.co.uk/search?q="
+
+function better_reverse_uniq {
+  # This doesn't require the list to be sorted like uniq does
+  # We'll also use tac to reverse the list
+  tac "$1" | awk '{ if (!($0 in items) && $0 != "") { print $0; items[$0] = 1 } }'
+}
+
+WHAT_DID_I_GOOGLIE=""
+
+if [[ -f "$GOOGLIES_HISTORY" ]]; then
+  WHAT_DID_I_GOOGLIE="$(better_reverse_uniq $GOOGLIES_HISTORY)"
+fi
+
+WHAT_TO_GOOGLIE="$(echo "$WHAT_DID_I_GOOGLIE" | dmenu  -p 'Do the googlies: ' -b)"
+
+if [ "$WHAT_TO_GOOGLIE" ]; then
+    echo "$WHAT_TO_GOOGLIE" >> $GOOGLIES_HISTORY
+    
+    xdg-open "${WHERE_IS_GOOGLIE}${WHAT_TO_GOOGLIE}" 2>/dev/null
+    i3-msg '[class="(?i)google-chrome"] focus'
+else
+    echo "Nothing to googlie."
+fi

@@ -36,5 +36,4 @@ i3:
 	-ln -s ${PWD}/scripts/set-backgrounds ${HOME}/bin
 	-ln -s ${PWD}/scripts/snip ${HOME}/bin
 	-ln -s ${PWD}/scripts/switch-keyboard-layout ${HOME}/bin
-	
-	
+	-ln -s ${PWD}/scripts/googlies ${HOME}/bin
