@@ -26,6 +26,7 @@ xcompose:
 i3:
 	-ln -s ${PWD}/.config/i3 ${HOME}/.config/
 	-ln -s ${PWD}/.config/polybar ${HOME}/.config/
+	-ln -s ${PWD}/.config/dunst ${HOME}/.config/
 	-mkdir -p ${HOME}/bin
 	-ln -s ${PWD}/scripts/fancywrap ${HOME}/bin
 	-ln -s ${PWD}/scripts/git-branch-status ${HOME}/bin
