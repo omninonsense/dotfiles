@@ -207,5 +207,5 @@ new_float normal
 
 # Gaps
 gaps inner 5
-bindsym $mod+KP_Add gaps inner all plus 1
-bindsym $mod+KP_Subtract gaps inner all minus 1
+bindsym $mod+KP_Add gaps inner all plus 2
+bindsym $mod+KP_Subtract gaps inner all minus 2
