@@ -1,5 +1,6 @@
 #!/bin/bash
 
+playerctl pause
 scrot /tmp/lock.png
 convert /tmp/lock.png -scale 5% -scale 2000% /tmp/lock.png
 echo "$(date +"%b %e %H:%M:%S locked")" >> ~/.i3locklog
