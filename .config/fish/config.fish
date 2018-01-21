@@ -61,6 +61,6 @@ end
 
 if status --is-interactive
   set -l IFS # this temporarily clears IFS, which disables the newline-splitting
-  eval (keychain --eval --quiet -Q id_rsa)
+# eval (keychain --eval --quiet -Q id_rsa)
   setfont /usr/share/kbd/consolefonts/Lat2-Terminus16 ^/dev/null
 end
