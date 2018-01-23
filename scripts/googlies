@@ -15,7 +15,7 @@ if [[ -f "$GOOGLIES_HISTORY" ]]; then
   WHAT_DID_I_GOOGLIE="$(better_reverse_uniq $GOOGLIES_HISTORY)"
 fi
 
-WHAT_TO_GOOGLIE="$(echo "$WHAT_DID_I_GOOGLIE" | dmenu  -p 'Do the googlies: ' -b)"
+WHAT_TO_GOOGLIE="$(echo "$WHAT_DID_I_GOOGLIE" | rofi -dmenu -p 'Googlies:')"
 
 if [ "$WHAT_TO_GOOGLIE" ]; then
     echo "$WHAT_TO_GOOGLIE" >> $GOOGLIES_HISTORY
