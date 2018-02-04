@@ -16,6 +16,10 @@
 
 (use-package atom-one-dark-theme :ensure t)
 
+(use-package erlang :ensure t)
+
+(use-package org-trello :ensure t)
+
 ;; custom functions & variables
 
 (defun minibuffer-keyboard-quit ()
@@ -58,19 +62,34 @@ prompt to name>."
     (comint-simple-send (get-buffer-process (current-buffer))
                       (concat "export PS1=\"\033[33m" name "\033[0m:\033[35m\\W\033[0m>\""))))
 
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
+(setq python-shell-interpreter "ipython")
 
 ;; move this somewhere more useful...
 (global-set-key (kbd "C-c s") 'new-shell)
 (global-set-key (kbd "M-p") 'helm-save-and-paste)
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
 
 (add-hook 'org-shiftup-final-hook 'windmove-up)
 (add-hook 'org-shiftleft-final-hook 'windmove-left)
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
+
+(winner-mode)
+(defvar my-keys-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-w <left>")  'windmove-left)
+    (define-key map (kbd "C-w <right>") 'windmove-right)
+    (define-key map (kbd "C-w <up>")    'windmove-up)
+    (define-key map (kbd "C-w <down>")  'windmove-down)
+    map)
+  "my-keys-minor-mode keymap.")
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  :init-value t
+  :lighter " my-keys")
+
+(my-keys-minor-mode 1)
 
 (add-hook 'java-mode-hook
           (lambda ()
@@ -97,28 +116,43 @@ prompt to name>."
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   )
 
-; (use-package smart-tabs-mode
-;   :ensure t
-;   :config
-;   (smart-tabs-insinuate 'python 'javascript)
-;   (add-hook 'python-mode-hook
-;     (lambda ()
-;         (smart-tabs-advice python-indent-line-1 python-indent)
-;         (setq indent-tabs-mode t)
-;         (setq tab-width 4))
-;     )
-;   (add-hook 'js2-mode-hook
-;     (lambda ()
-;         (smart-tabs-advice js2-indent-line js2-basic-offset)
-;         (setq indent-tabs-mode t)
-;         (setq tab-width 2))
-;     )
-;   (add-hook 'css-mode-hook
-;     (lambda ()
-;         (setq indent-tabs-mode t)
-;         (setq tab-width 4))
-;     )
-;   )
+;; (use-package smart-tabs-mode
+;;   :ensure t
+;;   :config
+;;   (smart-tabs-insinuate 'python 'javascript)
+;;   (add-hook 'python-mode-hook
+;;     (lambda ()
+;;         (smart-tabs-advice python-indent-line-1 python-indent)
+;;         (setq indent-tabs-mode t)
+;;         (setq tab-width 4))
+;;     )
+
+;;   (add-hook 'js2-mode-hook
+;;     (lambda ()
+;;         (smart-tabs-advice js2-indent-line js2-basic-offset)
+;;         (setq indent-tabs-mode t)
+;;         (setq tab-width 2))
+;;     )
+
+;;   (add-hook 'rsjx-mode-hook
+;;     (lambda ()
+;;         (setq c-basic-offset 2
+;;               indent-tabs-mode t
+;;               tab-width 2
+;;               evil-shift-width 2)))
+
+;;   (add-hook 'css-mode-hook
+;;     (lambda ()
+;;         (setq indent-tabs-mode t)
+;;         (setq tab-width 4))
+;;     )
+;;   )
+
+(use-package json-mode
+  :ensure t
+  :config
+  (add-hook 'json-mode-hook #'flycheck-mode)
+  )
 
 (use-package js2-mode
   :ensure t
@@ -141,7 +175,7 @@ prompt to name>."
 (use-package flycheck
   :ensure t
   :config
-  ;; (add-hook 'after-init-hook 'global-flycheck-mode)
+  (add-hook 'after-init-hook 'global-flycheck-mode)
   )
 
 
@@ -188,10 +222,15 @@ prompt to name>."
     "oo"  'other-frame
     "kb"  'kill-buffer
     "gs"  'magit-status
+    "gb"  'magit-blame
     "/"   'helm-projectile-ag
     ";"   'comment-dwim
     "ss"  'ssh-tunnels
     "ks"  'kubernetes-overview
+    "a"   'winner-undo
+    "d"   'winner-redo
+    "<right>"   'org-shiftright
+    "<left>"    'org-shiftleft
     )
   )
 
@@ -208,7 +247,6 @@ prompt to name>."
   (global-set-key [escape] 'keyboard-quit)
   (evil-set-initial-state 'ssh-tunnels-mode 'emacs)
   (evil-set-initial-state 'haskell-error-mode 'emacs)
-  (evil-set-initial-state 'term-mode 'emacs)
   (evil-mode 1))
 
 ;; (use-package swiper
@@ -220,7 +258,9 @@ prompt to name>."
   :ensure t
   :config
   (global-set-key "\C-s" 'helm-swoop)
-  (setq helm-swoop-speed-or-color t))
+  (setq helm-swoop-speed-or-color t)
+  (setq helm-swoop-pre-input-function (lambda () ""))
+  )
 
 (use-package idle-highlight-mode :ensure t)
 
@@ -246,6 +286,10 @@ prompt to name>."
   (define-key helm-map (kbd "<tab>") 'helm-next-line)
   )
 
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 50)
+(run-at-time nil (* 5 60) 'recentf-save-list)
+
 (use-package helm-ag
   :ensure t)
 
@@ -264,19 +308,22 @@ prompt to name>."
   :ensure t
   :config
   (add-hook 'after-init-hook 'global-company-mode)
+  (add-to-list 'company-backends 'company-anaconda)
+  (eval-after-load 'company
+    '(progn
+      (define-key company-active-map (kbd "TAB") 'company-select-next)
+      (define-key company-active-map [tab] 'company-select-next)
+      (setq company-selection-wrap-around t)
+      ))
   )
 
-(use-package jedi-core :ensure t)
-
-(use-package company-jedi
+(use-package pyvenv
   :ensure t
-  :config
-  (add-hook 'python-mode-hook
-    (lambda ()
-      (add-to-list 'company-backends 'company-jedi))
-    )
   )
 
+
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+(setq tramp-default-method "ssh")
 
 ;; start the server
 ;; (server-start)
@@ -300,6 +347,21 @@ prompt to name>."
     (setq org-agenda-files '("~/org/"))
   :ensure t)
 
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (venv-initialize-interactive-shells)
+  (setq venv-location "$HOME/.virtualenvs/envs"))
+
+(use-package anaconda-mode
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  )
+
+(use-package company-anaconda
+  :ensure t
+  )
 
 (use-package yaml-mode
   :ensure t
@@ -308,11 +370,26 @@ prompt to name>."
             (lambda ()
               (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
 
-(use-package dockerfile-mode :ensure t)
+(use-package dockerfile-mode
+  :ensure t)
 
 (use-package nix-mode :ensure t)
 
-(use-package haskell-mode :ensure t)
+(defun my-haskell-interactive-switch ()
+  (save-buffer)
+  (haskell-interactive-switch)
+  )
+
+(use-package haskell-mode
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook
+            (lambda ()
+              (interactive-haskell-mode)
+            )
+  ))
+
+;; (define-key interactive-haskell-mode-map "C-c C-z" 'my-haskell-interactive-switch))
 
 (use-package powerline-evil
   :ensure t
@@ -330,20 +407,6 @@ prompt to name>."
   )
 
 (use-package smart-mode-line :ensure t)
-
-; (use-package ssh-tunnels
-;   :ensure t
-;   :config
-;   (setq ssh-tunnels-configurations
-;       '((:name "HDFS Gambit"
-;          :local-port 5102
-;          :remote-port 50070
-;          :login "archive1-pm.gambit")
-;          (:name "Zeppelin Gambit"
-;           :local-port 3232
-;           :host "zeppelin.zeppelin.svc.k2.gambit"
-;           :remote-port 80
-;           :login "thecode.gambit"))))
 
 (use-package org-bullets
   :ensure t
@@ -370,9 +433,10 @@ prompt to name>."
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" "b59d7adea7873d58160d368d42828e7ac670340f11f36f67fa8071dbf957236a" "2a739405edf418b8581dcd176aaf695d319f99e3488224a3c495cb0f9fd814e3" default)))
+ '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (kubernetes-evil kubernetes nix-sandbox ssh-tunnels helm-swoop shell-here org-bullets company-jedi company flycheck zenburn-theme yaml-mode use-package swiper smart-tabs-mode smart-mode-line scpaste scala-mode rjsx-mode rainbow-delimiters powerline-evil paredit nix-mode markdown-mode jedi-core idle-highlight-mode helm-projectile helm-ag haskell-mode evil-magit evil-leader dockerfile-mode better-defaults airline-themes))))
+    (erlang erlang-mode multi-term pyvenv anaconda-mode org-trello itail json-mode kubernetes-evil kubernetes nix-sandbox ssh-tunnels helm-swoop shell-here org-bullets company flycheck zenburn-theme yaml-mode use-package swiper smart-tabs-mode smart-mode-line scpaste scala-mode rjsx-mode rainbow-delimiters powerline-evil paredit nix-mode markdown-mode idle-highlight-mode helm-projectile helm-ag haskell-mode evil-magit evil-leader dockerfile-mode better-defaults airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
