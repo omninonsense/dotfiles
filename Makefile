@@ -27,8 +27,11 @@ i3:
 	-ln -s ${PWD}/.config/i3 ${HOME}/.config/
 	-ln -s ${PWD}/.config/polybar ${HOME}/.config/
 	-ln -s ${PWD}/.config/dunst ${HOME}/.config/
+
+scripts:
 	-mkdir -p ${HOME}/bin
 	-ln -s ${PWD}/scripts/fancywrap ${HOME}/bin
+	-ln -s ${PWD}/scripts/delay-screensaver ${HOME}/bin
 	-ln -s ${PWD}/scripts/git-branch-status ${HOME}/bin
 	-ln -s ${PWD}/scripts/i3-exit ${HOME}/bin
 	-ln -s ${PWD}/scripts/launch-polybar ${HOME}/bin
