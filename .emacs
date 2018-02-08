@@ -118,37 +118,43 @@ prompt to name>."
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   )
 
-;; (use-package smart-tabs-mode
-;;   :ensure t
-;;   :config
-;;   (smart-tabs-insinuate 'python 'javascript)
-;;   (add-hook 'python-mode-hook
-;;     (lambda ()
-;;         (smart-tabs-advice python-indent-line-1 python-indent)
-;;         (setq indent-tabs-mode t)
-;;         (setq tab-width 4))
-;;     )
+(use-package smart-tabs-mode
+  :ensure t
+  :config
+  (smart-tabs-insinuate 'python 'javascript)
+  (add-hook 'python-mode-hook
+    (lambda ()
+        (smart-tabs-advice python-indent-line-1 python-indent)
+        (setq indent-tabs-mode t)
+        (setq tab-width 4))
+    )
 
-;;   (add-hook 'js2-mode-hook
-;;     (lambda ()
-;;         (smart-tabs-advice js2-indent-line js2-basic-offset)
-;;         (setq indent-tabs-mode t)
-;;         (setq tab-width 2))
-;;     )
+  (add-hook 'js2-mode-hook
+    (lambda ()
+        (smart-tabs-advice js2-indent-line js2-basic-offset)
+        (setq indent-tabs-mode t)
+        (setq tab-width 2))
+    )
 
-;;   (add-hook 'rsjx-mode-hook
-;;     (lambda ()
-;;         (setq c-basic-offset 2
-;;               indent-tabs-mode t
-;;               tab-width 2
-;;               evil-shift-width 2)))
+  (add-hook 'rsjx-mode-hook
+    (lambda ()
+        (setq c-basic-offset 2
+              indent-tabs-mode t
+              tab-width 2
+              evil-shift-width 2)))
 
-;;   (add-hook 'css-mode-hook
-;;     (lambda ()
-;;         (setq indent-tabs-mode t)
-;;         (setq tab-width 4))
-;;     )
-;;   )
+  (add-hook 'fish-mode-hook
+    (lambda ()
+        (setq indent-tabs-mode nil)
+        (setq tab-width 2))
+    )
+
+  (add-hook 'css-mode-hook
+    (lambda ()
+        (setq indent-tabs-mode nil)
+        (setq tab-width 2))
+    )
+  )
 
 (use-package json-mode
   :ensure t
