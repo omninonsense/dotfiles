@@ -20,6 +20,8 @@
 
 (use-package org-trello :ensure t)
 
+(use-package rotate :ensure t)
+
 ;; custom functions & variables
 
 (defun minibuffer-keyboard-quit ()
@@ -436,7 +438,7 @@ prompt to name>."
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (erlang erlang-mode multi-term pyvenv anaconda-mode org-trello itail json-mode kubernetes-evil kubernetes nix-sandbox ssh-tunnels helm-swoop shell-here org-bullets company flycheck zenburn-theme yaml-mode use-package swiper smart-tabs-mode smart-mode-line scpaste scala-mode rjsx-mode rainbow-delimiters powerline-evil paredit nix-mode markdown-mode idle-highlight-mode helm-projectile helm-ag haskell-mode evil-magit evil-leader dockerfile-mode better-defaults airline-themes))))
+    (rotate erlang erlang-mode multi-term pyvenv anaconda-mode org-trello itail json-mode kubernetes-evil kubernetes nix-sandbox ssh-tunnels helm-swoop shell-here org-bullets company flycheck zenburn-theme yaml-mode use-package swiper smart-tabs-mode smart-mode-line scpaste scala-mode rjsx-mode rainbow-delimiters powerline-evil paredit nix-mode markdown-mode idle-highlight-mode helm-projectile helm-ag haskell-mode evil-magit evil-leader dockerfile-mode better-defaults airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
