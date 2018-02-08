@@ -1,0 +1,1 @@
+/home/nino/.config/fisherman/getopts/getopts.fish
