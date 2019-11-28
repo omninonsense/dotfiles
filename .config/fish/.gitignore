@@ -4,3 +4,5 @@ secrets/*
 fish_variables
 fish_history
 fish_read_history
+home.fish
+work.fish
