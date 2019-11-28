@@ -1,5 +1,6 @@
 fishd.*
 secrets/*
 !secrets/empty.fish
+fish_variables
 fish_history
 fish_read_history
