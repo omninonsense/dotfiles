@@ -137,10 +137,9 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec i3-exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -190,10 +189,9 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id bash ~/.screenlayout/gambit.sh # Work
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id killall notify-osd # Work (Ubuntu)
+exec --no-startup-id killall notify-osd
 exec --no-startup-id dunst
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
@@ -204,15 +202,10 @@ exec --no-startuo-id setxkbmap -option caps:escape -option compose:menu
 exec --no-startup-id redshift -Pr
 bindsym $mod+x exec killall --signal USR1 redshift
 
-# assign [class="Atom"] $workspace2
-assign [class="Spotify"] $workspace4
-for_window [class="Spotify"] move to workspace $workspace4
-
 new_window pixel
 new_float normal
 
 # Gaps
-# gaps inner 5
 bindsym $mod+KP_Add gaps inner all plus 2
 bindsym $mod+KP_Subtract gaps inner all minus 2
 
