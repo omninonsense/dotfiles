@@ -27,8 +27,13 @@ set -g fish_pager_color_description    black              # the color of the com
 set -g fish_color_search_match         --background=black # the color used to highlight history search matches
 
 # Enable Chruby
-source /usr/local/share/chruby/chruby.fish
-source /usr/local/share/chruby/auto.fish
+if test -e /usr/local/share/chruby/chruby.fish
+    source /usr/local/share/chruby/chruby.fish
+end
+
+if test -e /usr/local/share/chruby/auto.fish
+    source /usr/local/share/chruby/auto.fish
+end
 
 # Include secrets
 source ~/.config/fish/secrets/*.fish
