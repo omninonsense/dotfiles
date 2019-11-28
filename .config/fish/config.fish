@@ -39,8 +39,12 @@ end
 source ~/.config/fish/secrets/*.fish
 
 # Include some work-specific stuff
-if begin test -f ~/.work; and test -f ~/.config/fish/gambit.fish; end
-  source ~/.config/fish/gambit.fish
+if test -f ~/.config/fish/work.fish
+  source ~/.config/fish/work.fish
+end
+
+if test -f ~/.config/fish/home.fish
+  source ~/.config/fish/home.fish
 end
 
 # Add $HOME/bin to $PATH
@@ -65,7 +69,6 @@ end
 
 
 if status --is-interactive
-  set -l IFS # this temporarily clears IFS, which disables the newline-splitting
-# eval (keychain --eval --quiet -Q id_rsa)
   setfont /usr/share/kbd/consolefonts/Lat2-Terminus16 ^/dev/null
+  starship init fish | source
 end
