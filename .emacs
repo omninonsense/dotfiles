@@ -14,6 +14,11 @@
 (add-to-list 'default-frame-alist
                        '(font . "DejaVu Sans Mono-10"))
 
+(use-package editorconfig
+                           :ensure t
+                           :config
+                           (editorconfig-mode 1))
+
 (use-package atom-one-dark-theme :ensure t)
 
 (use-package erlang :ensure t)
