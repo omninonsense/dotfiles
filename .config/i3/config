@@ -191,8 +191,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id killall notify-osd # Work (Ubuntu)
-exec --no-startup-id dunst -fn "Monospace 18"
+exec --no-startup-id killall notify-osd
+exec --no-startup-id dunst
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
 exec --no-startup-id synergys --daemon -c ~/synergy.conf --enable-crypto
