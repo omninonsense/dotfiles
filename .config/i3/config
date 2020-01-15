@@ -137,10 +137,9 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec i3-exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -177,7 +176,7 @@ bindsym $mod+r mode "resize"
 bindsym Print exec "scrot -e 'mv $f ~/Screenshots'"
 bindsym $mod+Print exec "scrot -se 'mv $f ~/Screenshots; xclip -i -selection clipboard -t image/png ~/Screenshots/$f'"
 
-bindsym Mod1+Control+l exec --no-startup-id bash ~/bin/lock
+bindsym Mod1+Control+l exec --no-startup-id xscreensaver-command -lock
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% # increase sound volume
@@ -190,23 +189,28 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id bash ~/.screenlayout/gambit.sh # Work
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id killall notify-osd # Work (Ubuntu)
+exec --no-startup-id killall notify-osd
 exec --no-startup-id dunst
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
-exec_always --no-startup-id setxkbmap -option compose:menu
 
-# assign [class="Atom"] $workspace2
-assign [class="Spotify"] $workspace4
-for_window [class="Spotify"] move to workspace $workspace4
+exec --no-startup-id setxkbmap -layout gb
+exec --no-startuo-id setxkbmap -option caps:escape -option compose:menu
+
+exec --no-startup-id redshift -Pr
+bindsym $mod+x exec killall --signal USR1 redshift
 
 new_window pixel
 new_float normal
 
 # Gaps
-# gaps inner 5
 bindsym $mod+KP_Add gaps inner all plus 2
 bindsym $mod+KP_Subtract gaps inner all minus 2
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
