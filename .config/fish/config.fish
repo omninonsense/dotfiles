@@ -69,6 +69,24 @@ end
 
 
 if status --is-interactive
+  source ~/.local/share/icons-in-terminal/icons.fish
   setfont /usr/share/kbd/consolefonts/Lat2-Terminus16 ^/dev/null
   starship init fish | source
+end
+
+if test -x (which pyenv)
+  pyenv init - | source
+end
+
+if test -f $HOME/.poetry/env
+  source $HOME/.poetry/env
+end
+
+if test -d $HOME/.dotnet/
+  set -gx PATH $HOME/.dotnet $PATH
+end
+
+
+if test -d $HOME/.cargo/bin
+  set -gx PATH $HOME/.cargo/bin $PATH
 end

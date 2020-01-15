@@ -191,10 +191,11 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id killall notify-osd
-exec --no-startup-id dunst
+exec --no-startup-id killall notify-osd # Work (Ubuntu)
+exec --no-startup-id dunst -fn "Monospace 18"
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
+exec --no-startup-id synergys --daemon -c ~/synergy.conf --enable-crypto
 
 exec --no-startup-id setxkbmap -layout gb
 exec --no-startuo-id setxkbmap -option caps:escape -option compose:menu
@@ -214,3 +215,5 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+
+bindsym $mode+F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -p ".desktop: "'
