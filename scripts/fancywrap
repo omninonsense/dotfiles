@@ -2,9 +2,9 @@
 require "clipboard"
 
 string = "fabulous"
-string = ARGV.join(' ') unless ARGV.empty?
+string = ARGV.join(" ") unless ARGV.empty?
 
-output = "\u{0f3a} #{string} \u{0f3b}"
+output = "༺✧･ﾟ: ✧･ﾟ: #{string.gsub(" ", "\u{3000}")} :･ﾟ✧:･ﾟ✧ ༻"
 
 Clipboard.copy output
 puts output
