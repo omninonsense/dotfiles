@@ -52,7 +52,11 @@ set -gx PATH $HOME/bin $PATH
 
 # Add Hackage/Cabal to BIN
 if test -d $HOME/.cabal/bin
-  set -gx PATH $HOME/bin $PATH
+  set -gx PATH $HOME/.cabal/bin $PATH
+end
+
+if test -d /usr/local/go/bin
+  set -gx PATH /usr/local/go/bin $PATH
 end
 
 # Add Ruby gems to path
