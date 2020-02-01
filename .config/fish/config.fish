@@ -26,6 +26,23 @@ set -g fish_pager_color_completion     normal             # the color of the com
 set -g fish_pager_color_description    black              # the color of the completion description
 set -g fish_color_search_match         --background=black # the color used to highlight history search matches
 
+set atp_debug false
+set atp_warn true
+
+function add_to_path --description "Add a directory to the path if it exists."
+  set -l location $argv[1]
+
+  set -l atp_debug_prefix "["(set_color brblue)"add_to_path:debug"(set_color normal)"]"
+  set -l atp_warn_prefix "["(set_color bryellow)"add_to_path:warn"(set_color normal)" ]"
+
+  if test -d $location
+    $atp_debug && echo $atp_debug_prefix (set_color -u blue)$location(set_color normal)" added to PATH"(set_color normal)
+    set -gx PATH "$location" $PATH
+  else
+    $atp_debug || $atp_warn && echo $atp_warn_prefix (set_color red)$location(set_color normal)" isn't a directory"(set_color normal)
+  end
+end
+
 # Enable Chruby
 if test -e /usr/local/share/chruby/chruby.fish
     source /usr/local/share/chruby/chruby.fish
@@ -47,20 +64,15 @@ if test -f ~/.config/fish/home.fish
   source ~/.config/fish/home.fish
 end
 
+set RUBY_VERSION (ruby -e "puts RUBY_VERSION")
+
 # Add $HOME/bin to $PATH
-set -gx PATH $HOME/bin $PATH
-
-# Add Hackage/Cabal to BIN
-if test -d $HOME/.cabal/bin
-  set -gx PATH $HOME/.cabal/bin $PATH
-end
-
-if test -d /usr/local/go/bin
-  set -gx PATH /usr/local/go/bin $PATH
-end
-
-# Add Ruby gems to path
-set -gx PATH $HOME/.gem/ruby/(ruby -r 'rbconfig' -e 'puts RbConfig::CONFIG["ruby_version"]')/bin $PATH
+add_to_path "/usr/local/go/bin"
+add_to_path "$HOME/.dotnet/"
+add_to_path "$HOME/.gem/ruby/$RUBY_VERSION/bin"
+add_to_path "$HOME/.cabal/bin"
+add_to_path "$HOME/.cargo/bin"
+add_to_path "$HOME/bin"
 
 # Set vim as editor
 set -gx EDITOR vim
@@ -70,7 +82,6 @@ set -gx VISUAL $EDITOR
 if [ "$TERM" != "screen-256color" ]
   set -gx TERM xterm-256color
 end
-
 
 if status --is-interactive
   source ~/.local/share/icons-in-terminal/icons.fish
@@ -84,13 +95,4 @@ end
 
 if test -f $HOME/.poetry/env
   source $HOME/.poetry/env
-end
-
-if test -d $HOME/.dotnet/
-  set -gx PATH $HOME/.dotnet $PATH
-end
-
-
-if test -d $HOME/.cargo/bin
-  set -gx PATH $HOME/.cargo/bin $PATH
 end
