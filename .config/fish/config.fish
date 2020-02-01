@@ -68,6 +68,7 @@ set RUBY_VERSION (ruby -e "puts RUBY_VERSION")
 
 # Add $HOME/bin to $PATH
 add_to_path "/usr/local/go/bin"
+add_to_path "$HOME/go/bin/"
 add_to_path "$HOME/.dotnet/"
 add_to_path "$HOME/.gem/ruby/$RUBY_VERSION/bin"
 add_to_path "$HOME/.cabal/bin"
