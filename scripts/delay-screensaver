@@ -14,7 +14,7 @@ end
 echo Screensaver delayed until (date -d @$time) 1>&2
 echo %self
 
-while math $time '>' (date +%s) >/dev/null
+while test $time '-gt' (date +%s) >/dev/null
     xscreensaver-command -deactivate >/dev/null
     sleep 10
 end

@@ -26,10 +26,32 @@ set -g fish_pager_color_completion     normal             # the color of the com
 set -g fish_pager_color_description    black              # the color of the completion description
 set -g fish_color_search_match         --background=black # the color used to highlight history search matches
 
-set atp_debug false
-set atp_warn true
-
 function add_to_path --description "Add a directory to the path if it exists."
+  set atp_debug false
+  set atp_warn true
+
+  argparse --name add_to_path --exclusive 'silent,debug' 'h/help' 's/silent' 'd/debug' -- $argv
+  or return 1
+
+  if set -q _flag_help
+    set fn_info (functions -v --details add_to_path)
+
+    echo "add_to_path - $fn_info[5]"
+    echo " "
+    echo (set_color brwhite)"  -h --help   "(set_color normal)" - Prints this message"
+    echo (set_color brwhite)"  -s --silent "(set_color normal)" - Don't print any warnings or debug messages"
+    echo (set_color brwhite)"  -d --debug "(set_color normal)" - Print debugging information"
+    return 0
+  end
+
+  if set -q _flag_silent
+    set atp_warn false
+  end
+
+  if set -q _flag_debug
+    set atp_debug true
+  end
+
   set -l location $argv[1]
 
   set -l atp_debug_prefix "["(set_color brblue)"add_to_path:debug"(set_color normal)"]"
@@ -66,14 +88,15 @@ end
 
 set RUBY_VERSION (ruby -e "puts RUBY_VERSION")
 
-# Add $HOME/bin to $PATH
-add_to_path "/usr/local/go/bin"
+# This one is only required at work machine. So making it silent for now.
+add_to_path --silent "/usr/local/go/bin"
 add_to_path "$HOME/go/bin/"
 add_to_path "$HOME/.dotnet/"
 add_to_path "$HOME/.gem/ruby/$RUBY_VERSION/bin"
 add_to_path "$HOME/.cabal/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/bin"
+add_to_path "$HOME/.local/bin"
 
 # Set vim as editor
 set -gx EDITOR vim
@@ -85,12 +108,16 @@ if [ "$TERM" != "screen-256color" ]
 end
 
 if status --is-interactive
-  source ~/.local/share/icons-in-terminal/icons.fish
+
+  if test -f "source ~/.local/share/icons-in-terminal/icons.fish"
+    source ~/.local/share/icons-in-terminal/icons.fish 
+  end
+
   setfont /usr/share/kbd/consolefonts/Lat2-Terminus16 ^/dev/null
   starship init fish | source
 end
 
-if test -x (which pyenv)
+if type -q pyenv
   pyenv init - | source
 end
 
