@@ -107,8 +107,11 @@ if [ "$TERM" != "screen-256color" ]
   set -gx TERM xterm-256color
 end
 
-if status --is-interactive
+# Add common abbreviations
+abbr -a be bundle exec
+abbr -a g git
 
+if status --is-interactive
   if test -f "source ~/.local/share/icons-in-terminal/icons.fish"
     source ~/.local/share/icons-in-terminal/icons.fish 
   end
