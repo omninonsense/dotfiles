@@ -19,7 +19,7 @@ alert = #bd2c40
 [bar/gambit]
 monitor = ${env:MONITOR:HDMI-0}
 width = 100%
-height = 40
+height = 28
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
@@ -43,11 +43,11 @@ module-margin-right = 2
 ; font-0 = fixed:pixelsize=10;1
 ; font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 
-font-0 = "Bitstream Vera Sans:size=16;0"
-font-1 = "Font Awesome 5 Free:style=Regular:size=18;0"
-font-2 = "Font Awesome 5 Free:style=Solid:size=18;0"
-font-3 = "TakaoGothic:weight=bold:size=18;0"
-font-4 = "OpenSansEmoji:size=18;0"
+font-0 = "Bitstream Vera Sans:size=10;0"
+font-1 = "Font Awesome 5 Free:style=Regular:size=12;0"
+font-2 = "Font Awesome 5 Free:style=Solid:size=12;0"
+font-3 = "TakaoGothic:weight=bold:size=12;0"
+font-4 = "OpenSansEmoji:size=12;0"
 
 
 modules-left = bspwm i3
