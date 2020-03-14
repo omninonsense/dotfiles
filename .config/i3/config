@@ -217,4 +217,4 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-bindsym $mode+F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -p ".desktop: "'
+bindsym $mod+F2 exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu -p ".desktop: "'
