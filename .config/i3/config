@@ -189,7 +189,8 @@ bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id compton -b
+exec --no-startup-id xscreensaver -no-splash
+exec --no-startup-id compton -b --backend glx --blur-background --blur-method kawase
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
