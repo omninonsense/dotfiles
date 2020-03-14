@@ -191,8 +191,6 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id compton -b
 exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id killall notify-osd
-exec --no-startup-id dunst
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
 exec --no-startup-id synergys --daemon -c ~/synergy.conf --enable-crypto
@@ -202,6 +200,9 @@ exec --no-startuo-id setxkbmap -option caps:escape -option compose:menu
 
 exec --no-startup-id redshift -Pr
 bindsym $mod+x exec killall --signal USR1 redshift
+
+exec --no-startup-id deadd-notification-center
+bindsym $mod+n exec --no-startup-id killall --signal USR1 deadd-notification-center
 
 new_window pixel
 new_float normal
