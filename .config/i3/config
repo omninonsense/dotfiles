@@ -193,7 +193,6 @@ exec --no-startup-id compton -b
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id launch-polybar
 exec --no-startup-id set-backgrounds
-exec --no-startup-id synergys --daemon -c ~/synergy.conf --enable-crypto
 
 exec --no-startup-id setxkbmap -layout gb
 exec --no-startuo-id setxkbmap -option caps:escape -option compose:menu
