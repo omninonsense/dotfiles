@@ -22,9 +22,9 @@ set -g fish_color_operator             blue               # the color for parame
 set -g fish_color_cwd                  green              # the color used for the current working directory in the default prompt
 
 set -g fish_pager_color_prefix         yellow --bold      # the color of the prefix string i.e. the string that is to be completed
-set -g fish_pager_color_completion     normal             # the color of the completion itself
-set -g fish_pager_color_description    black              # the color of the completion description
-set -g fish_color_search_match         --background=black # the color used to highlight history search matches
+set -g fish_pager_color_completion     white              # the color of the completion itself
+set -g fish_pager_color_description    normal             # the color of the completion description
+set -g fish_color_search_match         --background=brblack # the color used to highlight history search matches
 
 function add_to_path --description "Add a directory to the path if it exists."
   set atp_debug false
