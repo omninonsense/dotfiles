@@ -86,13 +86,13 @@ if test -f ~/.config/fish/home.fish
   source ~/.config/fish/home.fish
 end
 
-set RUBY_VERSION (ruby -e "puts RUBY_VERSION")
+set GEM_USER_DIR (ruby -e 'puts Gem.user_dir')
 
 # This one is only required at work machine. So making it silent for now.
 add_to_path --silent "/usr/local/go/bin"
 add_to_path "$HOME/go/bin/"
 add_to_path "$HOME/.dotnet/"
-add_to_path "$HOME/.gem/ruby/$RUBY_VERSION/bin"
+add_to_path "$GEM_USER_DIR/bin"
 add_to_path "$HOME/.cabal/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/bin"
