@@ -2,13 +2,29 @@
 
 set time
 
-getopts $argv | while read -l key value
-    switch $key
-        case _
-            set time (date -d @(math 60 '*' $value '+' (date +%s)) +%s)
-        case u until 
-            set time (date -d $value +%s)
-    end
+argparse --name=delay-screensaver 'h/help' 'm/minutes=?' -- $argv
+or exit
+
+# getopts $argv | while read -l key value
+#     switch $key
+#         case _
+#             set time (date -d @(math 60 '*' $value '+' (date +%s)) +%s)
+#         case u until 
+#             set time (date -d $value +%s)
+#     end
+# end
+
+if set -q _flag_help
+    echo "use delay-screensaver [--minutes/-m=minutes]/[time], where time is any valid `date -d` parameter"
+    echo "example: delay-screensaver -u=tomorrow"
+
+    exit 0
+end
+
+if set -q _flag_minutes
+    set time (date -d @(math 60 '*' $_flag_minutes '+' (date +%s)) +%s)
+else
+    set time (date -d "$argv" +%s)
 end
 
 echo Screensaver delayed until (date -d @$time) 1>&2

@@ -27,6 +27,7 @@ i3:
 	-ln -s ${PWD}/.config/i3 ${HOME}/.config/
 	-ln -s ${PWD}/.config/polybar ${HOME}/.config/
 	-ln -s ${PWD}/.config/dunst ${HOME}/.config/
+	-ln -s ${PWD}/.config/rofi ${HOME}/.config/
 
 scripts:
 	-mkdir -p ${HOME}/bin
