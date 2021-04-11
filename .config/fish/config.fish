@@ -1,18 +1,16 @@
 # Include secrets
-for file in ~/.config/fish/secrets/*.fish
+for file in $__fish_config_dir/secrets/*.fish
   source $file
 end
 
 # Machine-specific stuff
-for file in ~/.config/machines/(hostname).d/*.fish
+for file in $__fish_config_dir/machines/(hostname).d/*.fish
   source $file
 end
 
 # This one is only required at work machine. So making it silent for now.
 add_to_path --silent "/usr/local/go/bin"
 add_to_path "$HOME/go/bin/"
-add_to_path "$HOME/.dotnet/"
-add_to_path "$HOME/.cabal/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/bin"
 add_to_path "$HOME/.local/bin"
@@ -37,4 +35,4 @@ if status --is-interactive
   starship init fish | source
 end
 
-
+status --is-interactive; and source (jump shell fish | psub)

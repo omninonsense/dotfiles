@@ -16,6 +16,9 @@ ruby-version:
 tmux:
 	-ln -s ${PWD}/.tmux.conf ${HOME}/
 
+wezterm:
+	-ln -s ${PWD}/.wezterm.lua ${HOME}/
+
 vim:
 	-ln -s ${PWD}/.vim ${HOME}/
 	-ln -s ${PWD}/.vimrc ${HOME}/

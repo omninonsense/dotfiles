@@ -31,7 +31,7 @@ function add_to_path --description "Add a directory to the path if it exists"
 
   if test -d $location
     $atp_debug && echo $atp_debug_prefix (set_color -u blue)$location(set_color normal)" added to PATH"(set_color normal)
-    set -gx PATH "$location" $PATH
+    set -gxp PATH "$location"
   else
     $atp_debug || $atp_warn && echo $atp_warn_prefix (set_color red)$location(set_color normal)" isn't a directory"(set_color normal)
   end
