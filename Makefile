@@ -19,6 +19,9 @@ tmux:
 wezterm:
 	-ln -s ${PWD}/.wezterm.lua ${HOME}/
 
+doom:
+	-ln -s ${PWD}/.doom.d ${HOME}/
+
 vim:
 	-ln -s ${PWD}/.vim ${HOME}/
 	-ln -s ${PWD}/.vimrc ${HOME}/
