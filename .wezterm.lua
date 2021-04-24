@@ -20,6 +20,7 @@ return {
   color_scheme = "Wez",
   font = wezterm.font_with_fallback({
     "JetBrains Mono",
+    "icons-in-terminal",
     "Noto Color Emoji",
   }),
   harfbuzz_features = {"calt=1", "clig=1"},
