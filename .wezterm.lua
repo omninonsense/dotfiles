@@ -9,8 +9,12 @@ for i = 1,8 do
 end
 
 local keys = {
-    {key="[", mods="ALT", action=wezterm.action{ActivateTabRelative=-1}},
-    {key="]", mods="ALT", action=wezterm.action{ActivateTabRelative=1}},
+  -- Relative tab navigation
+  {key="[", mods="ALT", action=wezterm.action{ActivateTabRelative=-1}},
+  {key="]", mods="ALT", action=wezterm.action{ActivateTabRelative=1}},
+  {key="|", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
+  {key="-", mods="LEADER", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
+  {key="z", mods="LEADER", action="TogglePaneZoomState"},
 }
 
 -- Merge keys and tab_switch_keys
@@ -24,5 +28,6 @@ return {
     "Noto Color Emoji",
   }),
   harfbuzz_features = {"calt=1", "clig=1"},
-  keys = keys
+  leader = { key="a", mods="CTRL", timeout_milliseconds=1000 },
+  keys = keys,
 }
