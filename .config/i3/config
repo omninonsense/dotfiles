@@ -178,13 +178,16 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id nm-applet --sm-disable
 
-exec --no-startup-id "sleep 2; setxkbmap -layout gb -option caps:escape -option compose:menu"
+exec --no-startup-id "sleep 2; setxkbmap -option caps:escape -option compose:sclk"
 
 exec --no-startup-id redshift -Pr
 bindsym $mod+x exec killall --signal USR1 redshift
 
 exec --no-startup-id deadd-notification-center
 bindsym $mod+n exec --no-startup-id killall --signal USR1 deadd-notification-center
+
+exec --no-startup-id gnome-keyring-daemon --start
+
 
 new_window pixel
 new_float normal
